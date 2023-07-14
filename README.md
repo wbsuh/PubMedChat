@@ -35,4 +35,3 @@ The resulting application is an interactive chatbot that can understand natural 
 
 ---
 
-Feel free to adjust this text as you see fit!
