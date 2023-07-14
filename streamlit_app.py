@@ -82,8 +82,18 @@ def search_articles(response):
     except (ValueError, SyntaxError):
         print(f"Failed to parse GPT-3.5-turbo response: {response}")  # DEBUG
 
-
-
+def handle_article_question(user_input):
+    # Extract number from user input
+    number = [int(s) for s in user_input.split() if s.isdigit()]
+    if number and 1 <= number[0] <= len(st.session_state.search_results):
+        article = st.session_state.search_results[number[0] - 1]
+        title = article["title"]
+        messages = [
+            {"role": "system", "content": f"You are a knowledgeable AI assistant. The user is asking a question about the following scientific article: '{title}'. Try to provide a helpful response."},
+            {"role": "user", "content": user_input},
+        ]
+        response = chat_with_gpt3(messages)
+        st.session_state.messages.append({"role": "assistant", "content": response})
 
 def summarize_article(user_input):
     # Extract number from user input
@@ -100,7 +110,7 @@ def summarize_article(user_input):
 
 def classify_user_input(user_input):
     messages = [
-        {"role": "system", "content": "You are a helpful AI assistant. The user is going to provide a command related to either searching PubMed articles or summarizing an article. Identify if the user's intent is to 'search' or 'summarize'."},
+        {"role": "system", "content": "You are a helpful AI assistant. The user is going to provide a command related to searching PubMed articles, summarizing an article, or asking a question about an article. Identify if the user's intent is to 'search', 'summarize', or 'ask'."},
         {"role": "user", "content": user_input},
     ]
 
@@ -109,10 +119,10 @@ def classify_user_input(user_input):
 
     if 'summarize' in response:
         return 'summary'
+    elif 'ask' in response or 'question' in response:
+        return 'ask'
     else:
         return 'search'
-
-
 
 def main():
     st.title("PubMed Chat")
@@ -146,6 +156,8 @@ def main():
             search_articles(response)
         elif user_intent == 'summary':
             summarize_article(user_input)
+        elif user_intent == 'ask':
+            handle_article_question(user_input)
 
 if __name__ == "__main__":
     main()
