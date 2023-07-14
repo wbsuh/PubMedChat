@@ -15,6 +15,7 @@ Key challenges included:
 - Identifying the user's intention (searching for articles or requesting a summary of an article)
 - Handling search queries and displaying results in an intuitive manner
 - Summarizing abstracts in a user-friendly format
+- Asking questions about a particular article (alpha)
 - Maintaining the conversational state and search results across interactions in Streamlit
 
 ## Solution
