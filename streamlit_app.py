@@ -26,55 +26,6 @@ def search_pubmed(query, field=None):
         })
     return articles
 
-# def chat_with_gpt3(messages):
-#     full_response = ""
-#     message_placeholder = st.empty()
-#     for response in openai.ChatCompletion.create(
-#         model="gpt-3.5-turbo",
-#         messages=messages,
-#         stream=True,
-#     ):
-#         content = response.choices[0].delta.get("content", "")
-#         for char in content:
-#             full_response += char
-#             message_placeholder.text(full_response + "|")
-#             time.sleep(0.01)
-#     message_placeholder.empty()  # Clear the placeholder
-#     with st.chat_message("assistant"):
-#         st.markdown(full_response)
-#     return full_response
-
-# def chat_with_gpt3(messages):
-#     full_response = ""
-#     for response in openai.ChatCompletion.create(
-#         model="gpt-3.5-turbo",
-#         messages=messages,
-#         stream=True,
-#     ):
-#         content = response.choices[0].delta.get("content", "")
-#         full_response += content
-#     with st.chat_message("assistant"):
-#         st.markdown(full_response)
-#     return full_response
-
-# def chat_with_gpt3(messages):
-#     with st.chat_message("assistant"):
-#         st.markdown("Typing...")
-        
-#     full_response = ""
-#     for response in openai.ChatCompletion.create(
-#         model="gpt-3.5-turbo",
-#         messages=messages,
-#         stream=True,
-#     ):
-#         content = response.choices[0].delta.get("content", "")
-#         full_response += content
-
-#     with st.chat_message("assistant"):
-#         st.markdown(full_response)
-        
-#     return full_response
-
 def chat_with_gpt3(messages):
     typing_message = st.markdown("""
         <style>
