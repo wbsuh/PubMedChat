@@ -4,7 +4,9 @@ from pymed import PubMed
 import ast
 import time
 
+
 openai.api_key = st.secrets["openaikey"]
+
 
 def search_pubmed(query, field=None):
     pubmed = PubMed(tool="PubMedChat", email="wonbae_suh@hotmail.com")
@@ -35,12 +37,12 @@ def chat_with_gpt3(messages):
                 padding: 10px;
                 color: #4a4a4a;
                 font-size: 16px;
-                width: 90%;  /* Increase this value to make the box wider */
+                width: 100%;  /* Increase this value to make the box wider */
                 margin: 10px 0;
                 background-color: #f0f0f0;
             }
         </style>
-        <div class="typing-message">AI is typing...</div>
+        <div class="typing-message">🤖 is typing...</div>
         """, unsafe_allow_html=True)
 
     full_response = ""
