@@ -12,6 +12,8 @@ def search_pubmed(query, field=None):
     pubmed = PubMed(tool="PubMedChat", email="wonbae_suh@hotmail.com")
     
     if field:
+        if field.lower() == "author":
+            query = normalize_author_name(query)  # Normalize the author name
         query = f"{query} [{field}]"
     
     results = pubmed.query(query, max_results=3)
@@ -98,6 +100,18 @@ def process_user_input(user_input):
     ]
     response = chat_with_gpt3(messages)
     return response
+
+def normalize_author_name(name):
+    parts = name.split()
+    if len(parts) == 3:  # If the name is in "First Middle Last" format
+        first, middle, last = parts
+        normalized_name = f"{last} {first[0]}{middle[0]}"
+    elif len(parts) == 2:  # If the name is in "First Last" format
+        first, last = parts
+        normalized_name = f"{last} {first[0]}"
+    else:
+        normalized_name = name  # If the name is in a different format, leave it as is
+    return normalized_name
 
 def summarize_article(user_input):
     # Extract number from user input
