@@ -30,6 +30,16 @@ To resolve these challenges, we implemented the following solutions:
 
 4. **Maintaining State in Streamlit**: Streamlit's session state was used to store the conversation history and search results, enabling a coherent and continuous chat experience.
 
+## Updates
+
+**Customization Features**: The app now includes a user_preferences module that allows users to tailor the type of articles or data they frequently search for.
+
+**Interaction History**: Integration with Redis to log past interactions, useful for referencing past searches or discussion points.
+
+**External Tools**: Integration with tools like DuckDuckGo for cross-referencing information.
+
+**Enhanced Summaries**: Summaries are now tailored to different expertise levels, offering insights that are accessible to both laypeople and experts.
+
 ## Outcome
 
 The resulting application is an interactive chatbot that can understand natural language queries, perform PubMed searches, and provide concise summaries of scientific articles. This offers a user-friendly way to access and understand the vast amount of information available on PubMed.
